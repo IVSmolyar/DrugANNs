@@ -21,6 +21,7 @@ Overall pipeline:
 6. Place preprocessed molecules data to `data/covid/COVID.csv` and `data/covid/COVID-test.csv` for train and test subsets correspondingly.
 7. Run `python finetune_contrast.py`
 8. Finally, run `predict-molclr.ipynb`. You need to change model path with your checkpoint. Or you can find checkpoint used for submission in finetune folder
+9. The final predictions should be passed to `lipinski_rule_application.ipynb`
 # Requirements
 You can find the requirements in requirements.txt file 
 
