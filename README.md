@@ -1,7 +1,7 @@
 # DrugANNs
 Global AI Challenge solution
 Overall pipeline:
-* data preprocessing (removed )
+* data preprocessing (removed unneeded parts of molecules)
 * generated Morgan, MACCS and Estate fingerprints
 * applied MolCLR graph neurla network
 * applied RandomForest to the features described before
@@ -10,4 +10,17 @@ Overall pipeline:
 # Repository structure
 * notebooks - contains all the notebooks which were used during the analysis
 * data - folder with all the data we used
-* scripts - folder with the scripts and models which we used
+* MolCLR - directory with MolCLR model
+* YouGraphRF - directory with random forest model
+# Model running
+1. Run `data_preprocessing.ipynb` to make canonical SMILES
+2. Run `ogb-rdk-transform.ipynb` to get preprocessed dataset
+3. Go to `YouGraphRF` and run `python random_forest.py --smiles_file ... --smiles_test_file ...`
+4. Take predictions from `rf_preds/rf_final_pred.npy`
+5. Go to MolCLR
+6. Place preprocessed molecules data to `data/covid/COVID.csv` and `data/covid/COVID-test.csv` for train and test subsets correspondingly.
+7. Run `python finetune_contrast.py`
+8. Finally, run `predict-molclr.ipynb`. You need to change model path with your checkpoint. Or you can find checkpoint used for submission in finetune folder
+# Requirements
+You can find the requirements in requirements.txt file 
+
